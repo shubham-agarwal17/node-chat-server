@@ -3,6 +3,7 @@ import config from "../config/config";
 import { IUser } from "../database";
 import jwt from "jsonwebtoken";
 import User from "../database/models/userModel";
+import { ApiError, encryptPassword, isPasswordMatch } from "../utils";
 
 const COOKIE_EXPIRATION_DAYS = 90;
 
@@ -23,7 +24,7 @@ const register = async (req:Request, res: Response) => {
 
     const userExists = await User.findOne({ email })
 
-    if (userExists) throw new APIError(400, "User already exists!")
+    if (userExists) throw new ApiError(400, "User already exists!")
 
     const user = await User.create({
       name,

@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs"
 
-class APIError extends Error {
+class ApiError extends Error {
   statusCode: number
   isOperational: boolean
 
@@ -28,4 +28,4 @@ const isPasswordMatch = async (password: string, userPassword: string) => {
   return result
 }
 
-export { APIError, encryptPassword, isPasswordMatch }
+export { ApiError, encryptPassword, isPasswordMatch }
